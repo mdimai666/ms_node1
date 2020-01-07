@@ -1,6 +1,6 @@
 $host.UI.RawUI.BackgroundColor = "Gray"
 $host.UI.RawUI.ForegroundColor = "Green"
 Write-Output 'BUILD CONTAINER node1'
-docker build --rm -f "Dockerfile" -t mdimai666/doc1:latest "."
+docker build --rm -f "Dockerfile" -t mdimai666/node1:latest "."
 [Console]::ResetColor()
 Write-Output ' '

@@ -3,11 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var safestringify = require('json-stringify-safe')
 require('colors');
 const MicroMQ = require('micromq');
 const pug_render = require('micromq-pug-render');
 
-require('dotenv')
+require('dotenv').config()
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -23,7 +24,7 @@ console.log(`                               `.bgBlack.green)
 // создаем экземпляр класса MicroService
 const mq = new MicroMQ({
   // название микросервиса (оно должно быть таким же, как указано в Gateway)
-  name: 'users',
+  name: 'service1',
   // настройки rabbitmq
   rabbit: {
     // ссылка для подключения к rabbitmq (default: amqp://guest:guest@localhost:5672)
@@ -39,7 +40,7 @@ mq.use(pug_render({ path_views: path_views }));
 // создаем эндпоинт /friends для метода GET
 mq.all('/service1', (req, res) => {
   // отправляем json ответ
-  res.render('index', {title: 'Service1'});
+  res.render('index', {title: 'Service1', data: safestringify(process.env)});
 });
 
 // создаем эндпоинт /status для метода GET

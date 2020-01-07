@@ -21,6 +21,11 @@
             "type": "npm",
             "script": "dockerremove",
             "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "start",
+            "problemMatcher": []
         }
     ]
 }
