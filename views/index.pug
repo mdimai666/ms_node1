@@ -1,0 +1,20 @@
+extends layout
+
+block content
+
+  .container
+    .jumbotron
+      h2 Welcome to Express
+      h1.text-primary.text-uppercase(style="font-size:5em") GETWAY
+      
+      .alert.alert-info Worked! 
+
+      pre.maxHeightLimit 
+
+
+block scripts
+  script.
+    $(document).ready(()=>{
+      var json = !{data}
+      $('pre').html(syntaxHighlight(json))
+    })
