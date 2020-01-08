@@ -26,6 +26,11 @@
             "type": "npm",
             "script": "start",
             "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "kill",
+            "problemMatcher": []
         }
     ]
 }

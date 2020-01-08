@@ -7,7 +7,8 @@
     "dockerbuild": "pwsh docker-build.ps1",
     "rundocker": "pwsh docker-run.ps1",
     "dockerremove": "pwsh docker-remove.ps1",
-    "pm2": "./node_modules/.bin/pm2 start ./bin/www"
+    "pm2": "node_modules/.bin/pm2 start bin/www",
+    "kill": "node_modules/.bin/pm2 kill"
   },
   "dependencies": {
     "colors": "^1.4.0",
@@ -21,6 +22,6 @@
     "micromq-pug-render": "^0.5.0",
     "morgan": "~1.9.1",
     "pm2": "^4.2.1",
-    "pug": "2.0.0-beta11"
+    "pug": "^2.0.4"
   }
 }
