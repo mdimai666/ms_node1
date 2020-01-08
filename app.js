@@ -66,6 +66,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+let isConnectedToRabbit = () => !!mq.connection;
+
+app.use((req,res,next)=>{
+  req.isConnectedToRabbit = isConnectedToRabbit;
+  next();
+})
+
+app.post('/restart', (req,res)=>{
+  // res.send('OK');
+  // let z = mq.start();
+  console.warn('/restart')
+  process.exit();
+  // restartSelf();
+})
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
@@ -86,3 +101,11 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+function restartSelf () {
+  spawn(process.argv[1], process.argv.slice(2), {
+    detached: true, 
+    stdio: ['ignore', out, err]
+  }).unref()
+  process.exit()
+}

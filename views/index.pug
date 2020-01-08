@@ -7,7 +7,17 @@ block content
       h2 Welcome to Express
       h1.text-uppercase(style="font-size:5em;color:green") Service1
       
-      .alert.alert-info Worked! 
+      .card
+        .card-body.p-1
+          b isConnectedToRabbit = 
+            span(style="color:"+(isConnectedToRabbit?"green":"red") ) #{isConnectedToRabbit}
+
+          button#btn_restart1.btn.btn-primary.float-right
+            i.fa.fa-restart
+            | Restart
+
+      p
+      p
 
       pre.maxHeightLimit 
 
@@ -15,6 +25,12 @@ block content
 block scripts
   script.
     $(document).ready(()=>{
-      var json = !{data}
+      var json = !{data};
       $('pre').html(syntaxHighlight(json))
+
+      $('#btn_restart1').click(()=>{
+          $('.container').first().html('Restarting...')
+          $.post('/restart')
+          setTimeout(()=>location.reload(), 500)
+      })
     })
